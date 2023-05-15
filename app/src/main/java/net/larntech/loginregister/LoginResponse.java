@@ -8,6 +8,7 @@ public class LoginResponse {
     private List<String> roles;
     private String accessToken;
     private String tokenType;
+    private boolean active;
 
     public int getId() {
         return id;
@@ -47,5 +48,13 @@ public class LoginResponse {
 
     public void setTokenType(String tokenType) {
         this.tokenType = tokenType;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

@@ -23,11 +23,18 @@ public class ApiClient {
         return retrofit;
     }
 
-
     public static UserService getUserService(){
         UserService userService = getRetrofit().create(UserService.class);
-
         return userService;
     }
 
+    public static GroupService getGroupService(){
+        GroupService groupService = getRetrofit().create(GroupService.class);
+        return groupService;
+    }
+
+    public static StudentService getStudentService(){
+        StudentService studentService = getRetrofit().create(StudentService.class);
+        return studentService;
+    }
 }

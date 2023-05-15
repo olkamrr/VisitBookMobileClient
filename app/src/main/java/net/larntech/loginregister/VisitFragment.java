@@ -9,10 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class VisitFragment extends Fragment {
 
-    public String name;
+    public String code;
     public TextView group;
 
     public VisitFragment() {
@@ -28,9 +29,9 @@ public class VisitFragment extends Fragment {
         group = view.findViewById(R.id.group);
         Bundle bundle = getArguments();
         if (bundle != null) {
-            name = bundle.getString("username");
+            code = bundle.getString("code");
         }
-        group.setText(name);
+        group.setText(code);
         return view;
     }
 }
