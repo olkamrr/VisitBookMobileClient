@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
                 if(TextUtils.isEmpty(username.getText().toString()) || TextUtils.isEmpty(password.getText().toString())){
                     Toast.makeText(MainActivity.this,"Username / Password Required", Toast.LENGTH_LONG).show();
                 }else{
-                    //proceed to login
                     login();
                 }
 
@@ -65,7 +64,38 @@ public class MainActivity extends AppCompatActivity {
                       public void run() {
 
                           assert loginResponse != null;
-                          startActivity(new Intent(MainActivity.this,DashboardActivity.class).putExtra("data",loginResponse.getUsername()));
+                          for (String roles: loginResponse.getRoles()){
+                              if (roles.equals("ROLE_ADMIN")) {
+                                  Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
+                                  intent.putExtra("username", loginResponse.getUsername());
+                                  startActivity(intent);
+                              }
+                              if (roles.equals("ROLE_STUDENT")) {
+                                  Intent intent = new Intent(MainActivity.this, StudentActivity.class);
+                                  intent.putExtra("username", loginResponse.getUsername());
+                                  intent.putExtra("id", loginResponse.getId());
+                                  intent.putExtra("token", loginResponse.getAccessToken());
+                                  startActivity(intent);
+                              }
+                              if (roles.equals("ROLE_TEACHER")) {
+                                  for (String roles2: loginResponse.getRoles()){
+                                      if (roles2.equals("ROLE_STUDENT")) {
+                                          Intent intent = new Intent(MainActivity.this, StudentTeacherActivity.class);
+                                          intent.putExtra("username", loginResponse.getUsername());
+                                          intent.putExtra("id", loginResponse.getId());
+                                          intent.putExtra("token", loginResponse.getAccessToken());
+                                          startActivity(intent);
+                                          break;
+                                      } else {
+                                          Intent intent = new Intent(MainActivity.this, TeacherActivity.class);
+                                          intent.putExtra("username", loginResponse.getUsername());
+                                          intent.putExtra("id", loginResponse.getId());
+                                          intent.putExtra("token", loginResponse.getAccessToken());
+                                          startActivity(intent);
+                                      }
+                                  }
+                              }
+                          }
                       }
                   },700);
 

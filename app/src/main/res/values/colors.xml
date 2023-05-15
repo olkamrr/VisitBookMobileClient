@@ -2,7 +2,11 @@
 <resources>
 
     <color name="colorPrimary">#3d95d0</color>
-    <color name="colorPrimaryDark">#489855</color>
+    <color name="colorPrimaryDark">#A385D8</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorWhite">#fff</color>
+    <color name="navBar">#A385D8</color>
+    <color name="navTrue">#434244</color>
+    <color name="navFalse">#000000</color>
+    <color name="frame">#8091A9FF</color>
 </resources>

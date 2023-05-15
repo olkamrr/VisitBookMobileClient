@@ -19,7 +19,7 @@ public class DashboardActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         if(intent.getExtras() != null){
-            String passedUsername = intent.getStringExtra("data");
+            String passedUsername = intent.getStringExtra("username");
             username.setText("Welcome "+passedUsername);
         }
     }
