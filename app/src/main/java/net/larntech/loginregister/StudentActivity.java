@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
+import net.larntech.loginregister.adapter.StudentAdapter;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -28,8 +30,8 @@ public class StudentActivity extends AppCompatActivity implements BottomNavigati
     String token;
     String id;
     String code;
-    int idGroup;
-    List<Student> students;
+    String idGroup;
+    String fullName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -73,6 +75,8 @@ public class StudentActivity extends AppCompatActivity implements BottomNavigati
                 return true;
 
             case R.id.group:
+                bundle.putString("idGroup", idGroup);
+                groupFragment.setArguments(bundle);
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.frameLayout, groupFragment)
@@ -109,8 +113,9 @@ public class StudentActivity extends AppCompatActivity implements BottomNavigati
                         public void run() {
                             assert group != null;
                             code = group.getCode();
-                            idGroup = group.getId();
+                            idGroup = String.valueOf(group.getId());
                             bundle.putString("code", code);
+                            getElder();
                         }
                     }, 700);
                 }
@@ -122,8 +127,8 @@ public class StudentActivity extends AppCompatActivity implements BottomNavigati
         });
     }
 
-    public void getStudent() {
-        Call<Student> getStudentCall = ApiClient.getStudentService().getStudent(Integer.parseInt(id), "Bearer " + token);
+    public void getElder() {
+        Call<Student> getStudentCall = ApiClient.getStudentService().getElder(Integer.parseInt(idGroup), "Bearer " + token);
         getStudentCall.enqueue(new Callback<Student>() {
             @Override
             public void onResponse(Call<Student> call, Response<Student> response) {
@@ -133,10 +138,8 @@ public class StudentActivity extends AppCompatActivity implements BottomNavigati
                         @Override
                         public void run() {
                             assert student != null;
-                            for (Student student1 : students) {
-                                
-                            }
-
+                            fullName = student.getLastName() + " " + student.getFirstName() + " " + student.getPatronymic();
+                            bundle.putString("fullName", fullName);
                         }
                     }, 700);
                 }
