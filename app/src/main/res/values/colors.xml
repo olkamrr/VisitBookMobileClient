@@ -9,4 +9,6 @@
     <color name="navTrue">#434244</color>
     <color name="navFalse">#000000</color>
     <color name="frame">#8091A9FF</color>
+    <color name="add">#6AFBC1</color>
+    <color name="button">#7D71FF</color>
 </resources>

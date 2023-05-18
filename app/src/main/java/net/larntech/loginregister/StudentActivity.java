@@ -2,9 +2,7 @@ package net.larntech.loginregister;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,11 +10,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 
-import net.larntech.loginregister.adapter.StudentAdapter;
-
-import java.util.List;
+import net.larntech.loginregister.models.Group;
+import net.larntech.loginregister.models.Student;
+import net.larntech.loginregister.retrofit.ApiClient;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -68,6 +65,7 @@ public class StudentActivity extends AppCompatActivity implements BottomNavigati
                         .commit();
                 return true;
             case R.id.schedule:
+                scheduleFragment.setArguments(bundle);
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.frameLayout, scheduleFragment)

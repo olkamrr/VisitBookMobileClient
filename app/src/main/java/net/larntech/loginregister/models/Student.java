@@ -1,4 +1,6 @@
-package net.larntech.loginregister;
+package net.larntech.loginregister.models;
+
+import net.larntech.loginregister.models.Group;
 
 public class Student {
     private int id;

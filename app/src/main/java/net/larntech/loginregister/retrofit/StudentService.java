@@ -1,4 +1,6 @@
-package net.larntech.loginregister;
+package net.larntech.loginregister.retrofit;
+
+import net.larntech.loginregister.models.Student;
 
 import java.util.List;
 

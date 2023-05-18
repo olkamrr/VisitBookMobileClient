@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="25dp"
+    tools:context=".ScheduleFormActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Создать пару"
+            android:textColor="@color/navTrue"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:layout_marginBottom="10dp"/>
+
+        <EditText
+            android:id="@+id/form_textFieldName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:hint="Название" />
+
+        <Spinner
+            android:id="@+id/week"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
+            android:entries="@array/week"/>
+        <Spinner
+            android:id="@+id/weekday"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
+            android:entries="@array/weekday"/>
+        <Spinner
+            android:id="@+id/teacher"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp" />
+        <Spinner
+            android:id="@+id/semester"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
+            android:entries="@array/semester"/>
+        <Spinner
+            android:id="@+id/type"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
+            android:entries="@array/type"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/scheduleList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:padding="15dp"
+        android:text="Сохранить"
+        android:layout_gravity="bottom|center"
+        android:textColor="@color/colorWhite"
+        android:layout_margin="20dp"
+        android:textSize="17dp" />
+
+</RelativeLayout>

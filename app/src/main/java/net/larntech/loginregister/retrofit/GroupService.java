@@ -1,4 +1,6 @@
-package net.larntech.loginregister;
+package net.larntech.loginregister.retrofit;
+
+import net.larntech.loginregister.models.Group;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

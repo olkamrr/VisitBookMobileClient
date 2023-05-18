@@ -1,4 +1,4 @@
-package net.larntech.loginregister;
+package net.larntech.loginregister.retrofit;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -36,5 +36,15 @@ public class ApiClient {
     public static StudentService getStudentService(){
         StudentService studentService = getRetrofit().create(StudentService.class);
         return studentService;
+    }
+
+    public static ScheduleService getScheduleService(){
+        ScheduleService scheduleService = getRetrofit().create(ScheduleService.class);
+        return scheduleService;
+    }
+
+    public static TeacherService getTeacherService(){
+        TeacherService teacherService = getRetrofit().create(TeacherService.class);
+        return teacherService;
     }
 }

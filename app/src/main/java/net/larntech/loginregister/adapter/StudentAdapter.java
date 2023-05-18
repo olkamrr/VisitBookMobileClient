@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import net.larntech.loginregister.R;
-import net.larntech.loginregister.Student;
+import net.larntech.loginregister.models.Student;
 
 import java.util.List;
 

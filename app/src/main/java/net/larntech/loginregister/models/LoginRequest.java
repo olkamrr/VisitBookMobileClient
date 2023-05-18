@@ -1,4 +1,4 @@
-package net.larntech.loginregister;
+package net.larntech.loginregister.models;
 
 public class LoginRequest {
 

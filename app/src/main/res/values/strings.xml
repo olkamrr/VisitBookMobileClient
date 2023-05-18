@@ -9,4 +9,33 @@
     <string name="action_settings">Settings</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="week">
+        <item>Числитель</item>
+        <item>Знаменатель</item>
+        <item>Каждую неделю</item>
+    </string-array>
+    <string-array name="weekday">
+        <item>Понедельник</item>
+        <item>Вторник</item>
+        <item>Среда</item>
+        <item>Четверг</item>
+        <item>Пятница</item>
+    </string-array>
+    <string-array name="type">
+        <item>ЛК</item>
+        <item>ПР</item>
+        <item>ЛР</item>
+    </string-array>
+    <string-array name="semester">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
 </resources>

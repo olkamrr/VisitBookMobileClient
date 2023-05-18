@@ -1,4 +1,4 @@
-package net.larntech.loginregister;
+package net.larntech.loginregister.models;
 
 import java.util.List;
 
