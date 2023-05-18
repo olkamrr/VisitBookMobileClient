@@ -36,6 +36,7 @@ public class ScheduleFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ScheduleFormActivity.class);
                 intent.putExtra("token", token);
+                intent.putExtra("idGroup", idGroup);
                 startActivity(intent);
             }
         });

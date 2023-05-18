@@ -65,6 +65,7 @@ public class StudentActivity extends AppCompatActivity implements BottomNavigati
                         .commit();
                 return true;
             case R.id.schedule:
+                bundle.putString("idGroup", idGroup);
                 scheduleFragment.setArguments(bundle);
                 getSupportFragmentManager()
                         .beginTransaction()
