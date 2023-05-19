@@ -23,4 +23,7 @@ public interface ScheduleService {
 
     @POST("/api/schedule/update/{id}")
     Call<Schedule> update(@Path("id") int id, @Body Schedule schedule, @Header("Authorization") String authHeader);
+
+    @GET("/api/schedule/delete/{id}")
+    Call<Schedule> delete(@Path("id") int id, @Header("Authorization") String authHeader);
 }

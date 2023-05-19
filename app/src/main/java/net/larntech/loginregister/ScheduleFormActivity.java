@@ -2,6 +2,7 @@ package net.larntech.loginregister;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -36,6 +37,7 @@ public class ScheduleFormActivity extends AppCompatActivity {
     EditText name;
     TextView list;
     Button save;
+    Button delete;
     String token;
     String idGroup;
     String idLesson;
@@ -145,9 +147,12 @@ public class ScheduleFormActivity extends AppCompatActivity {
         type = findViewById(R.id.type);
         name = findViewById(R.id.nameSchedule);
         save = findViewById(R.id.scheduleSave);
+        delete = findViewById(R.id.scheduleDelete);
         list = findViewById(R.id.list);
 
         Schedule schedule = new Schedule();
+
+        if (idLesson == null) delete.setVisibility(View.GONE);
 
         week.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent,
@@ -204,7 +209,20 @@ public class ScheduleFormActivity extends AppCompatActivity {
             }
         });
 
+        delete.setOnClickListener(view -> {
+            Call<Schedule> getScheduleCall = ApiClient.getScheduleService().delete(Integer.parseInt(idLesson),"Bearer " + token);
+            getScheduleCall.enqueue(new Callback<Schedule>() {
+                @Override
+                public void onResponse(Call<Schedule> call, Response<Schedule> response) {
+                }
 
+                @Override
+                public void onFailure(Call<Schedule> call, Throwable t) {
+                }
+            });
+            Intent intent = new Intent(ScheduleFormActivity.this,StudentActivity.class);
+            startActivity(intent);
+        });
         save.setOnClickListener(view -> {
 
             nameSchedule = String.valueOf(name.getText());
@@ -242,6 +260,8 @@ public class ScheduleFormActivity extends AppCompatActivity {
                     }
                 });
             }
+            Intent intent = new Intent(ScheduleFormActivity.this,StudentActivity.class);
+            startActivity(intent);
         });
     }
 }
