@@ -2,7 +2,6 @@ package net.larntech.loginregister;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -11,11 +10,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import net.larntech.loginregister.adapter.StudentAdapter;
 import net.larntech.loginregister.models.Schedule;
-import net.larntech.loginregister.models.Student;
 import net.larntech.loginregister.models.Teacher;
 import net.larntech.loginregister.retrofit.ApiClient;
 
@@ -25,7 +23,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class ScheduleFormActivity extends AppCompatActivity {
 
@@ -37,9 +34,11 @@ public class ScheduleFormActivity extends AppCompatActivity {
     Spinner semester;
     Spinner type;
     EditText name;
+    TextView list;
     Button save;
     String token;
     String idGroup;
+    String idLesson;
     String weekSchedule;
     String nameSchedule;
     String weekdaySchedule;
@@ -55,7 +54,40 @@ public class ScheduleFormActivity extends AppCompatActivity {
 
         getIntentSM();
         initializeComponent();
+    }
 
+    public void getLesson() {
+        Call<Schedule> getScheduleCall = ApiClient.getScheduleService().getLesson(Integer.parseInt(idLesson),"Bearer " + token);
+        getScheduleCall.enqueue(new Callback<Schedule>() {
+            @Override
+            public void onResponse(Call<Schedule> call, Response<Schedule> response) {
+                if(response.isSuccessful()){
+                    Schedule schedule = response.body();
+                    new Handler().postDelayed(() -> {
+                        assert schedule != null;
+                        ArrayAdapter adapterSemester = (ArrayAdapter) semester.getAdapter();
+                        ArrayAdapter adapterWeek = (ArrayAdapter) week.getAdapter();
+                        ArrayAdapter adapterTeacher = (ArrayAdapter) teacher.getAdapter();
+                        ArrayAdapter adapterWeekday = (ArrayAdapter) weekday.getAdapter();
+                        ArrayAdapter adapterType = (ArrayAdapter) type.getAdapter();
+
+                        FIO = schedule.getTeacher().getLastName() + " " + schedule.getTeacher().getFirstName() + " " + schedule.getTeacher().getPatronymic();
+                        list.setText("Редактировать пару");
+                        name.setText(schedule.getName());
+                        week.setSelection(adapterWeek.getPosition(schedule.getWeek()));
+                        semester.setSelection(adapterSemester.getPosition(schedule.getSemester()));
+                        teacher.setSelection(adapterTeacher.getPosition(FIO));
+                        weekday.setSelection(adapterWeekday.getPosition(schedule.getWeekday()));
+                        type.setSelection(adapterType.getPosition(schedule.getType()));
+                    }, 700);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Schedule> call, Throwable t) {
+                Toast.makeText(ScheduleFormActivity.this, "Failed ", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void getTeacher() {
@@ -86,7 +118,11 @@ public class ScheduleFormActivity extends AppCompatActivity {
         if (extras != null) {
             token = extras.getString("token");
             idGroup = extras.getString("idGroup");
+            idLesson = extras.getString("idLesson");
             getTeacher();
+            if (idLesson != null) {
+                getLesson();
+            }
         } else Toast.makeText(ScheduleFormActivity.this, "Failed ", Toast.LENGTH_SHORT).show();
     }
 
@@ -109,6 +145,7 @@ public class ScheduleFormActivity extends AppCompatActivity {
         type = findViewById(R.id.type);
         name = findViewById(R.id.nameSchedule);
         save = findViewById(R.id.scheduleSave);
+        list = findViewById(R.id.list);
 
         Schedule schedule = new Schedule();
 
@@ -167,6 +204,7 @@ public class ScheduleFormActivity extends AppCompatActivity {
             }
         });
 
+
         save.setOnClickListener(view -> {
 
             nameSchedule = String.valueOf(name.getText());
@@ -177,19 +215,33 @@ public class ScheduleFormActivity extends AppCompatActivity {
             schedule.setType(typeSchedule);
             schedule.setWeekday(weekdaySchedule);
 
-            Call<Schedule> getScheduleCall = ApiClient.getScheduleService().save(schedule, Integer.parseInt(idGroup),"Bearer " + token);
-            getScheduleCall.enqueue(new Callback<Schedule>() {
-                @Override
-                public void onResponse(Call<Schedule> call, Response<Schedule> response) {
-                    Toast.makeText(ScheduleFormActivity.this, "Save successful", Toast.LENGTH_SHORT).show();
-                }
+            if (idLesson != null) {
+                Call<Schedule> getScheduleCall = ApiClient.getScheduleService().update(Integer.parseInt(idLesson), schedule,"Bearer " + token);
+                getScheduleCall.enqueue(new Callback<Schedule>() {
+                    @Override
+                    public void onResponse(Call<Schedule> call, Response<Schedule> response) {
+                        Toast.makeText(ScheduleFormActivity.this, "Update successful", Toast.LENGTH_SHORT).show();
+                    }
 
-                @Override
-                public void onFailure(Call<Schedule> call, Throwable t) {
-                    Toast.makeText(ScheduleFormActivity.this, "Failed ", Toast.LENGTH_SHORT).show();
-                }
-            });
+                    @Override
+                    public void onFailure(Call<Schedule> call, Throwable t) {
+                        Toast.makeText(ScheduleFormActivity.this, "Failed ", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else {
+                Call<Schedule> getScheduleCall = ApiClient.getScheduleService().save(schedule, Integer.parseInt(idGroup),"Bearer " + token);
+                getScheduleCall.enqueue(new Callback<Schedule>() {
+                    @Override
+                    public void onResponse(Call<Schedule> call, Response<Schedule> response) {
+                        Toast.makeText(ScheduleFormActivity.this, "Save successful", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Schedule> call, Throwable t) {
+                        Toast.makeText(ScheduleFormActivity.this, "Failed ", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
         });
-
     }
 }

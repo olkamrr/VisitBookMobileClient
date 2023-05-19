@@ -3,14 +3,12 @@ package net.larntech.loginregister.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import net.larntech.loginregister.R;
 import net.larntech.loginregister.models.Schedule;
-import net.larntech.loginregister.models.Student;
 
 import java.util.List;
 
@@ -18,8 +16,15 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleHolder> {
 
     private List<Schedule> scheduleList;
 
-    public ScheduleAdapter(List<Schedule> scheduleList) {
+    public interface OnScheduleClickListener{
+        void onScheduleClick(Schedule schedule, int position);
+    }
+
+    private final OnScheduleClickListener onClickListener;
+
+    public ScheduleAdapter(List<Schedule> scheduleList, OnScheduleClickListener onClickListener) {
         this.scheduleList = scheduleList;
+        this.onClickListener = onClickListener;
     }
 
     @NonNull
@@ -37,6 +42,15 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleHolder> {
         holder.week.setText(schedule.getWeek());
         holder.type.setText(schedule.getType());
         holder.teacher.setText(schedule.getTeacher().getLastName() + " " + schedule.getTeacher().getFirstName() + " " + schedule.getTeacher().getPatronymic());
+        // обработка нажатия
+        holder.itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v)
+            {
+                // вызываем метод слушателя, передавая ему данные
+                onClickListener.onScheduleClick(schedule, position);
+            }
+        });
     }
 
     @Override

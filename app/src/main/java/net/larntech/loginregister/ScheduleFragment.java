@@ -11,17 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import net.larntech.loginregister.adapter.ScheduleAdapter;
-import net.larntech.loginregister.adapter.StudentAdapter;
 import net.larntech.loginregister.models.Schedule;
-import net.larntech.loginregister.models.Student;
 import net.larntech.loginregister.retrofit.ApiClient;
 
 import java.util.List;
@@ -110,13 +106,23 @@ public class ScheduleFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Schedule>> call, Throwable t) {
-                Toast.makeText(getActivity(), "Failed " + t, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Failed " + t, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void populateListView(List<Schedule> scheduleList) {
-        ScheduleAdapter scheduleAdapter = new ScheduleAdapter(scheduleList);
+        // определяем слушателя нажатия элемента в списке
+        ScheduleAdapter.OnScheduleClickListener scheduleClickListener = new ScheduleAdapter.OnScheduleClickListener() {
+            @Override
+            public void onScheduleClick(Schedule schedule, int position) {
+                Intent intent = new Intent(getActivity(), ScheduleFormActivity.class);
+                intent.putExtra("token", token);
+                intent.putExtra("idLesson", String.valueOf(schedule.getId()));
+                startActivity(intent);
+            }
+        };
+        ScheduleAdapter scheduleAdapter = new ScheduleAdapter(scheduleList, scheduleClickListener);
         recyclerView.setAdapter(scheduleAdapter);
     }
 }

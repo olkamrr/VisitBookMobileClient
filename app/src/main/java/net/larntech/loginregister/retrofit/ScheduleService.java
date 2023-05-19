@@ -17,4 +17,10 @@ public interface ScheduleService {
 
     @GET("/api/schedule/{groupId}/{semester}/{weekday}")
     Call<List<Schedule>> getLessons(@Path("groupId") int groupId, @Path("semester") int semester, @Path("weekday") String weekday, @Header("Authorization") String authHeader);
+
+    @GET("/api/schedule/edit/{id}")
+    Call<Schedule> getLesson(@Path("id") int id, @Header("Authorization") String authHeader);
+
+    @POST("/api/schedule/update/{id}")
+    Call<Schedule> update(@Path("id") int id, @Body Schedule schedule, @Header("Authorization") String authHeader);
 }
