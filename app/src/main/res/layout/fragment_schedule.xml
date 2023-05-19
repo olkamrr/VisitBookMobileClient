@@ -16,7 +16,25 @@
         android:textColor="@color/navTrue"
         android:textStyle="bold"
         android:textSize="22sp"/>
-
+    <Spinner
+        android:id="@+id/semester"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="5dp"
+        android:entries="@array/semester"/>
+    <Spinner
+        android:id="@+id/weekday"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="95dp"
+        android:layout_marginBottom="5dp"
+        android:entries="@array/weekday"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/scheduleList_recyclerView"
+        android:layout_marginTop="145dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <Button
         android:id="@+id/scheduleList"
         android:layout_width="wrap_content"

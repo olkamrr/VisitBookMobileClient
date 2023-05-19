@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import net.larntech.loginregister.adapter.StudentAdapter;
 import net.larntech.loginregister.models.Student;
@@ -52,7 +53,7 @@ public class GroupFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Student>> call, Throwable t) {
-//                Toast.makeText(GroupFragment.this, "Failed ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Failed ", Toast.LENGTH_SHORT).show();
             }
         });
     }
