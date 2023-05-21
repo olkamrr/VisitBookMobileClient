@@ -33,5 +33,10 @@
         android:layout_marginTop="100dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"/>
+    <CalendarView
+        android:id="@+id/calendar"
+        android:layout_marginTop="190dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </FrameLayout>

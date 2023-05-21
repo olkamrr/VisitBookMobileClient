@@ -260,8 +260,6 @@ public class ScheduleFormActivity extends AppCompatActivity {
                     }
                 });
             }
-            Intent intent = new Intent(ScheduleFormActivity.this,StudentActivity.class);
-            startActivity(intent);
         });
     }
 }

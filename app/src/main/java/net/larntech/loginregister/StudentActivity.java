@@ -58,6 +58,7 @@ public class StudentActivity extends AppCompatActivity implements BottomNavigati
     {
         switch (item.getItemId()) {
             case R.id.calendar:
+                bundle.putString("idGroup", idGroup);
                 visitFragment.setArguments(bundle);
                 getSupportFragmentManager()
                         .beginTransaction()

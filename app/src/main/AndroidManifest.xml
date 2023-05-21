@@ -14,6 +14,12 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".MarkVisitActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VisitActivity"
+            android:exported="false" />
+        <activity
             android:name=".ScheduleFormActivity"
             android:exported="false" />
         <activity

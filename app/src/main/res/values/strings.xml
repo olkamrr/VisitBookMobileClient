@@ -14,6 +14,10 @@
         <item>Знаменатель</item>
         <item>Каждую неделю</item>
     </string-array>
+    <string-array name="weekVisit">
+        <item>Числитель</item>
+        <item>Знаменатель</item>
+    </string-array>
     <string-array name="weekday">
         <item>Понедельник</item>
         <item>Вторник</item>

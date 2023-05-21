@@ -1,5 +1,6 @@
 package net.larntech.loginregister.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ScheduleHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ScheduleHolder holder, @SuppressLint("RecyclerView") int position) {
         Schedule schedule = scheduleList.get(position);
         holder.name.setText(schedule.getName());
         holder.week.setText(schedule.getWeek());
