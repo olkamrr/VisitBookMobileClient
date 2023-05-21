@@ -2,6 +2,7 @@ package net.larntech.loginregister.adapter;
 
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,7 +13,7 @@ import net.larntech.loginregister.R;
 public class StudentVisitHolder extends RecyclerView.ViewHolder {
 
     TextView lastname, name, patronymic, id;
-    CheckBox n, nb;
+    RadioButton n, nb, be;
 
     public StudentVisitHolder(@NonNull View itemView) {
         super(itemView);
@@ -22,5 +23,6 @@ public class StudentVisitHolder extends RecyclerView.ViewHolder {
         id = itemView.findViewById(R.id.studentListItem_id);
         n = itemView.findViewById(R.id.n);
         nb = itemView.findViewById(R.id.nb);
+        be = itemView.findViewById(R.id.be);
     }
 }

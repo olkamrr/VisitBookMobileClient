@@ -48,6 +48,18 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/be"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:paddingTop="4dp"
+                android:paddingBottom="5dp"
+                android:text="+"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textSize="16sp" />
+
+            <TextView
                 android:id="@+id/n"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -73,7 +85,7 @@
         </TableRow>
     </TableLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/studentList_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

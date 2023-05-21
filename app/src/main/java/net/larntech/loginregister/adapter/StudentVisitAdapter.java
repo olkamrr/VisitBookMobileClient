@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,8 @@ public class StudentVisitAdapter extends RecyclerView.Adapter<StudentVisitHolder
     private List<Student> studentsList;
     private LayoutInflater inflater;
     private Context context;
+    int selectedPosition = -1;
+    AdapterView.OnItemClickListener onItemClickListener;
 
     public StudentVisitAdapter(Context context, List<Student> studentsList) {
         inflater = LayoutInflater.from(context);
@@ -42,11 +46,15 @@ public class StudentVisitAdapter extends RecyclerView.Adapter<StudentVisitHolder
         holder.name.setText(student.getFirstName());
         holder.patronymic.setText(student.getPatronymic());
         holder.id.setText(String.valueOf(student.getId()));
-        /*//holder.n.setTag(position);
         holder.n.setOnClickListener(view -> {
-            //Integer pos = (Integer) holder.n.getTag();
-            Toast.makeText(context, studentsList.get(position).getLastName(), Toast.LENGTH_SHORT).show();
-        });*/
+            Toast.makeText(context, studentsList.get(position).getLastName() + " Н", Toast.LENGTH_SHORT).show();
+        });
+        holder.nb.setOnClickListener(view -> {
+            Toast.makeText(context, studentsList.get(position).getLastName() + " НБ", Toast.LENGTH_SHORT).show();
+        });
+        holder.be.setOnClickListener(view -> {
+            Toast.makeText(context, studentsList.get(position).getLastName() + " есть", Toast.LENGTH_SHORT).show();
+        });
     }
 
     @Override

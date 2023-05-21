@@ -53,23 +53,31 @@
         app:layout_constraintStart_toEndOf="@+id/studentListItem_name"
         app:layout_constraintTop_toTopOf="@+id/studentListItem_name" />
 
-    <CheckBox
-        android:id="@+id/checkBoxN"
+    <RadioGroup
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="45dp"
-        app:layout_constraintEnd_toStartOf="@+id/checkBoxNB"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <CheckBox
-        android:id="@+id/checkBoxNB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="23dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/be"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="30dp"/>
+        <RadioButton
+            android:id="@+id/n"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="32dp"/>
+
+        <RadioButton
+            android:id="@+id/nb"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </RadioGroup>
 
     <View
         android:layout_width="match_parent"
