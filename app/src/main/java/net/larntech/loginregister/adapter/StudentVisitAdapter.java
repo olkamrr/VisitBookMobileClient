@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import net.larntech.loginregister.MarkVisitActivity;
 import net.larntech.loginregister.R;
 import net.larntech.loginregister.models.Student;
 
@@ -21,13 +22,19 @@ public class StudentVisitAdapter extends RecyclerView.Adapter<StudentVisitHolder
     private List<Student> studentsList;
     private LayoutInflater inflater;
     private Context context;
-    int selectedPosition = -1;
-    AdapterView.OnItemClickListener onItemClickListener;
+    String status;
+    int studentId;
+    String token;
+    String idLesson;
+    String data;
 
-    public StudentVisitAdapter(Context context, List<Student> studentsList) {
+    public StudentVisitAdapter(Context context, List<Student> studentsList, String token, String idLesson, String data) {
         inflater = LayoutInflater.from(context);
         this.studentsList = studentsList;
         this.context = context;
+        this.token = token;
+        this.idLesson = idLesson;
+        this.data = data;
     }
 
     @NonNull
@@ -41,18 +48,28 @@ public class StudentVisitAdapter extends RecyclerView.Adapter<StudentVisitHolder
 
     @Override
     public void onBindViewHolder(@NonNull StudentVisitHolder holder, int position) {
+        MarkVisitActivity markVisitActivity = new MarkVisitActivity();
         Student student = studentsList.get(position);
         holder.lastname.setText(student.getLastName());
         holder.name.setText(student.getFirstName());
         holder.patronymic.setText(student.getPatronymic());
         holder.id.setText(String.valueOf(student.getId()));
         holder.n.setOnClickListener(view -> {
-            Toast.makeText(context, studentsList.get(position).getLastName() + " Н", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, studentsList.get(position).getLastName() + " отсутвует", Toast.LENGTH_SHORT).show();
+            status = "Н";
+            studentId = student.getId();
+            markVisitActivity.saveVisit(studentId, status, idLesson, token, data);
         });
         holder.nb.setOnClickListener(view -> {
-            Toast.makeText(context, studentsList.get(position).getLastName() + " НБ", Toast.LENGTH_SHORT).show();
+            status = "НБ";
+            studentId = student.getId();
+            markVisitActivity.saveVisit(studentId, status, idLesson, token, data);
+            Toast.makeText(context, studentsList.get(position).getLastName() + " отсутвует по уважительной причине", Toast.LENGTH_SHORT).show();
         });
         holder.be.setOnClickListener(view -> {
+            status = "П";
+            studentId = student.getId();
+            markVisitActivity.saveVisit(studentId, status, idLesson, token, data);
             Toast.makeText(context, studentsList.get(position).getLastName() + " есть", Toast.LENGTH_SHORT).show();
         });
     }

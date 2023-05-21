@@ -12,9 +12,15 @@ import android.widget.Toast;
 
 import net.larntech.loginregister.adapter.StudentAdapter;
 import net.larntech.loginregister.adapter.StudentVisitAdapter;
+import net.larntech.loginregister.models.Schedule;
 import net.larntech.loginregister.models.Student;
+import net.larntech.loginregister.models.Visit;
 import net.larntech.loginregister.retrofit.ApiClient;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -31,6 +37,10 @@ public class MarkVisitActivity extends AppCompatActivity {
     String idGroup;
     TextView nameText;
     RecyclerView recyclerView;
+    String mDate;
+    Date date;
+    int student;
+    String status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +49,7 @@ public class MarkVisitActivity extends AppCompatActivity {
 
         getIntentSM();
         initializeComponent();
+        mDate = mYear + "-" + mMonth + "-" + mDay;
     }
 
     public void getIntentSM() {
@@ -78,7 +89,42 @@ public class MarkVisitActivity extends AppCompatActivity {
     }
 
     private void populateListView(List<Student> studentList) {
-        StudentVisitAdapter studentVisitAdapter = new StudentVisitAdapter(MarkVisitActivity.this, studentList);
+        StudentVisitAdapter studentVisitAdapter = new StudentVisitAdapter(MarkVisitActivity.this, studentList, token, idLesson, mDate);
         recyclerView.setAdapter(studentVisitAdapter);
+    }
+
+    public void saveVisit(int idStudent, String statusVisit, String lesson, String t, String dataString) {
+        student = idStudent;
+        status = statusVisit;
+        idLesson = lesson;
+        token = t;
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            date = dateFormat.parse(dataString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        mDate = dateFormat.format(date);
+        if (String.valueOf(student) != null && status != null && idLesson != null) {
+            save();
+        }
+    }
+
+    public void save(){
+        Visit visit = new Visit();
+        visit.setStatus(status);
+        visit.setDate(mDate);
+        Call<Visit> getVisitCall = ApiClient.getVisitService().save(visit, Integer.parseInt(idLesson), student, "Bearer " + token);
+        getVisitCall.enqueue(new Callback<Visit>() {
+            @Override
+            public void onResponse(Call<Visit> call, Response<Visit> response) {
+                //Toast.makeText(MarkVisitActivity.this, "Save successful", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Visit> call, Throwable t) {
+                //Toast.makeText(MarkVisitActivity.this, "Failed ", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

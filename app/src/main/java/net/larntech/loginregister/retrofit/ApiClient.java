@@ -47,4 +47,9 @@ public class ApiClient {
         TeacherService teacherService = getRetrofit().create(TeacherService.class);
         return teacherService;
     }
+
+    public static VisitService getVisitService(){
+        VisitService visitService = getRetrofit().create(VisitService.class);
+        return visitService;
+    }
 }
