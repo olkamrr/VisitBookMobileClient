@@ -6,6 +6,7 @@ public class Visit {
     private int id;
     private String date;
     private String status;
+    private boolean confirmation;
     private Schedule lessonId;
     private Student studentId;
 
@@ -33,6 +34,14 @@ public class Visit {
         this.status = status;
     }
 
+    public boolean isConfirmation() {
+        return confirmation;
+    }
+
+    public void setConfirmation(boolean confirmation) {
+        this.confirmation = confirmation;
+    }
+
     public Schedule getLessonId() {
         return lessonId;
     }
@@ -55,6 +64,7 @@ public class Visit {
                 "id=" + id +
                 ", date=" + date +
                 ", status='" + status + '\'' +
+                ", confirmation=" + confirmation +
                 ", lessonId=" + lessonId +
                 ", studentId=" + studentId +
                 '}';

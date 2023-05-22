@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
@@ -40,6 +42,7 @@ public class MarkVisitActivity extends AppCompatActivity {
     String mDate;
     Date date;
     int student;
+    int idVisit;
     String status;
 
     @Override
@@ -105,9 +108,7 @@ public class MarkVisitActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         mDate = dateFormat.format(date);
-        if (String.valueOf(student) != null && status != null && idLesson != null) {
-            save();
-        }
+        findVisit();
     }
 
     public void save(){
@@ -124,6 +125,57 @@ public class MarkVisitActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Visit> call, Throwable t) {
                 //Toast.makeText(MarkVisitActivity.this, "Failed ", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void update(){
+        Visit visit = new Visit();
+        visit.setStatus(status);
+        visit.setDate(mDate);
+        Call<Visit> getVisitCall = ApiClient.getVisitService().update(idVisit, visit, "Bearer " + token);
+        getVisitCall.enqueue(new Callback<Visit>() {
+            @Override
+            public void onResponse(Call<Visit> call, Response<Visit> response) {
+                //Toast.makeText(MarkVisitActivity.this, "Save successful", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Visit> call, Throwable t) {
+                //Toast.makeText(MarkVisitActivity.this, "Failed ", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void findVisit(){
+        Call<List<Visit>> getVisitCall = ApiClient.getVisitService().find(Integer.parseInt(idLesson), student, "Bearer " + token);
+        getVisitCall.enqueue(new Callback<List<Visit>>() {
+            @Override
+            public void onResponse(Call<List<Visit>> call, Response<List<Visit>> response) {
+                if (response.isSuccessful()){
+                    List<Visit> visits = response.body();
+                    assert visits != null;
+                    for (Visit visit: visits){
+                        String dateVisit = visit.getDate();
+                        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        try {
+                            date = dateFormat.parse(dateVisit);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        dateVisit = dateFormat.format(date);
+                        if (dateVisit.equals(mDate) && !visit.isConfirmation()){
+                            idVisit = visit.getId();
+                            update();
+                        }
+                    }
+                    if (idVisit == 0) save();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Visit>> call, Throwable t) {
+                save();
             }
         });
     }
