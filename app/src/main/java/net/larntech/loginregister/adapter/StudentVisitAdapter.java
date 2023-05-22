@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import net.larntech.loginregister.MarkVisitActivity;
 import net.larntech.loginregister.R;
 import net.larntech.loginregister.models.Student;
+import net.larntech.loginregister.models.Visit;
 
 import java.util.List;
 

@@ -148,33 +148,22 @@ public class MarkVisitActivity extends AppCompatActivity {
     }
 
     public void findVisit(){
-        Call<List<Visit>> getVisitCall = ApiClient.getVisitService().find(Integer.parseInt(idLesson), student, "Bearer " + token);
-        getVisitCall.enqueue(new Callback<List<Visit>>() {
+        Call<Visit> getVisitCall = ApiClient.getVisitService().findVisit(Integer.parseInt(idLesson), student, mDate,"Bearer " + token);
+        getVisitCall.enqueue(new Callback<Visit>() {
             @Override
-            public void onResponse(Call<List<Visit>> call, Response<List<Visit>> response) {
+            public void onResponse(Call<Visit> call, Response<Visit> response) {
                 if (response.isSuccessful()){
-                    List<Visit> visits = response.body();
-                    assert visits != null;
-                    for (Visit visit: visits){
-                        String dateVisit = visit.getDate();
-                        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                        try {
-                            date = dateFormat.parse(dateVisit);
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                        dateVisit = dateFormat.format(date);
-                        if (dateVisit.equals(mDate) && !visit.isConfirmation()){
-                            idVisit = visit.getId();
-                            update();
-                        }
-                    }
-                    if (idVisit == 0) save();
+                    Visit visit = response.body();
+                    assert visit != null;
+                    idVisit = visit.getId();
+                    if (!visit.isConfirmation() && idVisit != 0){
+                        update();
+                    } else save();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Visit>> call, Throwable t) {
+            public void onFailure(Call<Visit> call, Throwable t) {
                 save();
             }
         });

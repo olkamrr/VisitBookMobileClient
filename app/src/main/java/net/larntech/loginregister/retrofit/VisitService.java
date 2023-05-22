@@ -20,4 +20,7 @@ public interface VisitService {
 
     @GET("/api/visit/find/{lessonId}/{studentId}")
     Call<List<Visit>> find(@Path("lessonId") int lessonId, @Path("studentId") int studentId, @Header("Authorization") String authHeader);
+
+    @GET("/api/visit/find/{lessonId}/{studentId}/{data}")
+    Call<Visit> findVisit(@Path("lessonId") int lessonId, @Path("studentId") int studentId, @Path("data") String data, @Header("Authorization") String authHeader);
 }
