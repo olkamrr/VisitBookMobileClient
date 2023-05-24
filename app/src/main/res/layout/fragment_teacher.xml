@@ -7,8 +7,26 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Подтверждение посещений студентов" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="15dp"
+        android:text="Расписание преподавателя"
+        android:textColor="@color/navTrue"
+        android:textStyle="bold"
+        android:textSize="22sp"/>
+    <Spinner
+        android:id="@+id/weekday"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginBottom="5dp"
+        android:entries="@array/weekday"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/scheduleList_recyclerView"
+        android:layout_marginTop="105dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </FrameLayout>

@@ -89,14 +89,14 @@ public class MainActivity extends AppCompatActivity {
                                           if (roles2.equals("ROLE_STUDENT")) {
                                               Intent intent = new Intent(MainActivity.this, StudentTeacherActivity.class);
                                               intent.putExtra("username", loginResponse.getUsername());
-                                              intent.putExtra("id", loginResponse.getId());
+                                              intent.putExtra("id", Integer.toString(loginResponse.getId()));
                                               intent.putExtra("token", loginResponse.getAccessToken());
                                               startActivity(intent);
                                               break;
                                           } else {
                                               Intent intent = new Intent(MainActivity.this, TeacherActivity.class);
                                               intent.putExtra("username", loginResponse.getUsername());
-                                              intent.putExtra("id", loginResponse.getId());
+                                              intent.putExtra("id", Integer.toString(loginResponse.getId()));
                                               intent.putExtra("token", loginResponse.getAccessToken());
                                               startActivity(intent);
                                           }

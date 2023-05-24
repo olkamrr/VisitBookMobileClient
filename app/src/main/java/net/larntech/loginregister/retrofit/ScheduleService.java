@@ -29,4 +29,7 @@ public interface ScheduleService {
 
     @GET("/api/schedule/{groupId}/{semester}/{weekday}/{week}")
     Call<List<Schedule>> getLessonsWeek(@Path("groupId") int groupId, @Path("semester") int semester, @Path("weekday") String weekday, @Path("week") String week, @Header("Authorization") String authHeader);
+
+    @GET("/api/schedule/teacher/{teacherId}/{weekday}")
+    Call <List<Schedule>> getSchedulesByTeacher(@Path("teacherId") int teacherId, @Path("weekday") String weekday, @Header("Authorization") String authHeader);
 }
