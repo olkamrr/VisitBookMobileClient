@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import net.larntech.loginregister.adapter.ScheduleAdapter;
 import net.larntech.loginregister.adapter.ScheduleTeacherAdapter;
@@ -76,7 +77,7 @@ public class TeacherFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Schedule>> call, Throwable t) {
-                //Toast.makeText(getActivity(), "Failed " + t, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Failed " + t, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -85,7 +86,12 @@ public class TeacherFragment extends Fragment {
         ScheduleTeacherAdapter.OnScheduleClickListener scheduleClickListener = new ScheduleTeacherAdapter.OnScheduleClickListener() {
             @Override
             public void onScheduleClick(Schedule schedule, int position) {
-
+                Intent intent = new Intent(getActivity(), VisitTeacherActivity.class);
+                intent.putExtra("token", token);
+                intent.putExtra("idLesson", String.valueOf(schedule.getId()));
+                intent.putExtra("code", schedule.getGroupId().getCode());
+                intent.putExtra("name", schedule.getName());
+                startActivity(intent);
             }
         };
         ScheduleTeacherAdapter scheduleTeacherAdapter = new ScheduleTeacherAdapter(scheduleList, scheduleClickListener);

@@ -9,6 +9,7 @@
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/drawable-v21/ic_menu_send.xml" value="0.184" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/drawable-v21/ic_menu_share.xml" value="0.2015" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/drawable-v21/ic_menu_slideshow.xml" value="0.2015" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/drawable-v21/text1.xml" value="0.104" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/drawable/button.xml" value="0.1945" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1945" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.2015" />
@@ -18,12 +19,14 @@
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/drawable/ic_baseline_school_24.xml" value="0.182" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/drawable/side_nav_bar.xml" value="0.2015" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/drawable/text.xml" value="0.1" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/layout/activity_confirmation_visit.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/layout/activity_mark_visit.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/layout/activity_schedule_form.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/layout/activity_student.xml" value="0.1" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/layout/activity_student_teacher.xml" value="0.19791666666666666" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/layout/activity_teacher.xml" value="0.19791666666666666" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/layout/activity_visit.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/layout/activity_visit_teacher.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/layout/fragment_group.xml" value="0.4" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/layout/fragment_schedule.xml" value="0.20606884057971014" />
@@ -33,6 +36,7 @@
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/layout/list_schedule_teacher.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/layout/list_student_item.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/layout/list_student_visit.xml" value="0.264" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/layout/list_student_visit_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/layout/list_visit_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/menu/bottom_nav_menu.xml" value="0.190625" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/VisitBookMobileClient/app/src/main/res/menu/color.xml" value="0.1" />

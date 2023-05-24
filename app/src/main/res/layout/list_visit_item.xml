@@ -6,42 +6,25 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/visitListItem_lesson"
-        android:layout_width="wrap_content"
+        android:id="@+id/visitListItem_data"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Data"
+        android:textAlignment="center"
+        android:padding="15dp"
+        android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
-        android:text="Пара"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/text1"
         android:textColor="@color/navTrue"
         android:textSize="18sp"
-        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/visitListItem_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:paddingBottom="5dp"
-        android:text="Группа"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/visitListItem_lesson" />
-
-    <TextView
-        android:id="@+id/visitListItem_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:paddingBottom="5dp"
-        android:text="Дата"
-        android:textSize="16sp"
-        app:layout_constraintLeft_toRightOf="@id/visitListItem_group"
-        app:layout_constraintStart_toEndOf="@+id/visitListItem_group"
-        app:layout_constraintTop_toTopOf="@+id/visitListItem_group" />
-
     <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#C2C2C2"

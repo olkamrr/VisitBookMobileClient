@@ -233,33 +233,35 @@ public class ScheduleFormActivity extends AppCompatActivity {
             schedule.setType(typeSchedule);
             schedule.setWeekday(weekdaySchedule);
 
-            if (idLesson != null) {
-                Call<Schedule> getScheduleCall = ApiClient.getScheduleService().update(Integer.parseInt(idLesson), schedule,"Bearer " + token);
-                getScheduleCall.enqueue(new Callback<Schedule>() {
-                    @Override
-                    public void onResponse(Call<Schedule> call, Response<Schedule> response) {
-                        Toast.makeText(ScheduleFormActivity.this, "Update successful", Toast.LENGTH_SHORT).show();
-                    }
+            if (nameSchedule.equals(null)) {
+                if (idLesson != null) {
+                    Call<Schedule> getScheduleCall = ApiClient.getScheduleService().update(Integer.parseInt(idLesson), schedule,"Bearer " + token);
+                    getScheduleCall.enqueue(new Callback<Schedule>() {
+                        @Override
+                        public void onResponse(Call<Schedule> call, Response<Schedule> response) {
+                            Toast.makeText(ScheduleFormActivity.this, "Update successful", Toast.LENGTH_SHORT).show();
+                        }
 
-                    @Override
-                    public void onFailure(Call<Schedule> call, Throwable t) {
-                        Toast.makeText(ScheduleFormActivity.this, "Failed ", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            } else {
-                Call<Schedule> getScheduleCall = ApiClient.getScheduleService().save(schedule, Integer.parseInt(idGroup),"Bearer " + token);
-                getScheduleCall.enqueue(new Callback<Schedule>() {
-                    @Override
-                    public void onResponse(Call<Schedule> call, Response<Schedule> response) {
-                        Toast.makeText(ScheduleFormActivity.this, "Save successful", Toast.LENGTH_SHORT).show();
-                    }
+                        @Override
+                        public void onFailure(Call<Schedule> call, Throwable t) {
+                            Toast.makeText(ScheduleFormActivity.this, "Failed ", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    Call<Schedule> getScheduleCall = ApiClient.getScheduleService().save(schedule, Integer.parseInt(idGroup),"Bearer " + token);
+                    getScheduleCall.enqueue(new Callback<Schedule>() {
+                        @Override
+                        public void onResponse(Call<Schedule> call, Response<Schedule> response) {
+                            Toast.makeText(ScheduleFormActivity.this, "Save successful", Toast.LENGTH_SHORT).show();
+                        }
 
-                    @Override
-                    public void onFailure(Call<Schedule> call, Throwable t) {
-                        Toast.makeText(ScheduleFormActivity.this, "Failed ", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
+                        @Override
+                        public void onFailure(Call<Schedule> call, Throwable t) {
+                            Toast.makeText(ScheduleFormActivity.this, "Failed ", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            } else Toast.makeText(ScheduleFormActivity.this, "Заполните все поля формы", Toast.LENGTH_SHORT).show();
         });
     }
 }
