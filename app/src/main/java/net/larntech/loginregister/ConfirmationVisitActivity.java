@@ -86,6 +86,7 @@ public class ConfirmationVisitActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Visit>> call, Response<List<Visit>> response) {
                 populateListView(response.body());
+                confirmation(response.body());
             }
 
             @Override
@@ -98,5 +99,25 @@ public class ConfirmationVisitActivity extends AppCompatActivity {
     public void populateListView(List<Visit> visitList) {
         VisitAdapter visitAdapter = new VisitAdapter(visitList);
         recyclerView.setAdapter(visitAdapter);
+    }
+
+    public void confirmation(List<Visit> visitList) {
+        confirmation.setOnClickListener(view -> {
+            for (Visit visit: visitList){
+                visit.setConfirmation(true);
+                Call<Visit> getVisitCall = ApiClient.getVisitService().update(visit.getId(), visit, "Bearer " + token);
+                getVisitCall.enqueue(new Callback<Visit>() {
+                    @Override
+                    public void onResponse(Call<Visit> call, Response<Visit> response) {
+                        Toast.makeText(ConfirmationVisitActivity.this, "Confirmation successful", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Visit> call, Throwable t) {
+                        Toast.makeText(ConfirmationVisitActivity.this, "Failed ", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
     }
 }
