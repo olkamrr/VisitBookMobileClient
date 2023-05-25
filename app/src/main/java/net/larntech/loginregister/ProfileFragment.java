@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 public class ProfileFragment extends Fragment {
     TextView name;
-    String id;
     String token;
     String username;
 
@@ -20,14 +19,15 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        name = view.findViewById(R.id.username);
+
         Bundle bundle = getArguments();
         if (bundle != null) {
-            id = bundle.getString("id");
             username = bundle.getString("username");
             token = bundle.getString("token");
         }
 
-        name = view.findViewById(R.id.username);
+
         name.setText(username);
 
         return view;

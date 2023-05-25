@@ -61,6 +61,7 @@ public class TeacherActivity extends AppCompatActivity implements BottomNavigati
                         .commit();
                 return true;
             case R.id.profile:
+                profileFragment.setArguments(bundle);
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.frameLayout, profileFragment)
