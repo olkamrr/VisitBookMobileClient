@@ -158,7 +158,9 @@ public class MarkVisitActivity extends AppCompatActivity {
                     idVisit = visit.getId();
                     if (!visit.isConfirmation() && idVisit != 0){
                         update();
-                    } else save();
+                    } else {
+                        if (idVisit == 0) save();
+                    }
                 }
             }
 

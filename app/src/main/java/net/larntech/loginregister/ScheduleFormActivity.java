@@ -234,6 +234,8 @@ public class ScheduleFormActivity extends AppCompatActivity {
             schedule.setWeekday(weekdaySchedule);
 
             if (nameSchedule.equals(null)) {
+                Toast.makeText(ScheduleFormActivity.this, "Заполните все поля формы", Toast.LENGTH_SHORT).show();
+            } else {
                 if (idLesson != null) {
                     Call<Schedule> getScheduleCall = ApiClient.getScheduleService().update(Integer.parseInt(idLesson), schedule,"Bearer " + token);
                     getScheduleCall.enqueue(new Callback<Schedule>() {
@@ -261,7 +263,7 @@ public class ScheduleFormActivity extends AppCompatActivity {
                         }
                     });
                 }
-            } else Toast.makeText(ScheduleFormActivity.this, "Заполните все поля формы", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 }
